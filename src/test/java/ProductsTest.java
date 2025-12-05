@@ -9,6 +9,4 @@ public class ProductsTest extends BaseTest {
         productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCart("Sauce Labs Onesie");
     }
-
-
 }
