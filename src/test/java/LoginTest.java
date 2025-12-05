@@ -1,12 +1,10 @@
-
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
-
-    @Test
+    @Test(description ="Проверка не корректного логина", priority = 1)
     public void checkIncorrectLogin() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
@@ -15,7 +13,7 @@ public class LoginTest extends BaseTest {
         assertEquals(loginPage.errorMessageText(), "Epic sadface: Sorry, this user has been locked out.");
     }
 
-    @Test
+    @Test(description ="Проверка корректного логина", priority = 2)
     public void checkCorrectLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
