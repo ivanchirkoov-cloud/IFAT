@@ -19,16 +19,17 @@ public class LoginPage {
         driver.get("https://www.saucedemo.com/");
     }
 
-    public void login(final String username,final String passwordName) {
+    public void login(final String username, final String passwordName) {
         driver.findElement(userField).sendKeys(username);
         driver.findElement(passwordField).sendKeys(passwordName);
         driver.findElement(loginBtn).click();
     }
 
-    public boolean isErrorMsgAppear(){
+    public boolean isErrorMsgAppear() {
         return driver.findElement(error).isDisplayed();
     }
-    public String errorMessageText(){
+
+    public String errorMessageText() {
         return driver.findElement(error).getText();
     }
 }
