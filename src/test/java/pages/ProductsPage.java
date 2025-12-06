@@ -12,6 +12,8 @@ public class ProductsPage extends BasePage {
     private static final String ADD_TO_CARD_BUTTON_PATTERN =
             "//div[text()='%s']//ancestor::div[@class='inventory_item']//button";
 
+    By cartBadge = By.xpath("//*[@data-test='shopping-cart-link']");
+
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
@@ -22,7 +24,11 @@ public class ProductsPage extends BasePage {
     }
 
     public void addToCart(final String goodsName) {
-    By addGoodsToCart = By.xpath(String.format(ADD_TO_CARD_BUTTON_PATTERN, goodsName));
-    driver.findElement(addGoodsToCart).click();
+        By addGoodsToCart = By.xpath(String.format(ADD_TO_CARD_BUTTON_PATTERN, goodsName));
+        driver.findElement(addGoodsToCart).click();
+    }
+
+    public String checkGoodsQuantity() {
+        return  driver.findElement(cartBadge).getText();
     }
 }

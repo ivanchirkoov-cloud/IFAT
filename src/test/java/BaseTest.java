@@ -8,6 +8,9 @@ import pages.ProductsPage;
 
 import java.time.Duration;
 
+/**
+ * Страница настройки окружения всех тестов
+ */
 public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
@@ -26,6 +29,6 @@ public class BaseTest {
 
     @AfterMethod
     public void close() {
-        driver.quit();
+        //driver.quit();
     }
 }

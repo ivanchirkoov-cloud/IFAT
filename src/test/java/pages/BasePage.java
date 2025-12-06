@@ -5,6 +5,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * Страница функциональности для всех страниц
+ */
 public class BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/";
     WebDriver driver;
