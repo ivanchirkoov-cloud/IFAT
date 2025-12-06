@@ -10,6 +10,8 @@ import java.time.Duration;
  */
 public class BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/";
+    public final static String TEXT_LOCATOR_PATTERN = "//*[text()='%s']";
+
     WebDriver driver;
     WebDriverWait wait;
 

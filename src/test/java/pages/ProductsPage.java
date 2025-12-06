@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 /**
  * Страница описывает функционал витрины с товарами
@@ -18,17 +18,21 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public boolean isPageLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
-        return driver.findElement(pageTitle).isDisplayed();
+    public boolean isPageLoaded(final String pageTitle) {
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
+        return driver.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
     }
 
     public void addToCart(final String goodsName) {
-        By addGoodsToCart = By.xpath(String.format(ADD_TO_CARD_BUTTON_PATTERN, goodsName));
-        driver.findElement(addGoodsToCart).click();
+      By addGoodsToCart = By.xpath(ADD_TO_CARD_BUTTON_PATTERN.formatted(goodsName));
+      driver.findElement(addGoodsToCart).click();
+    }
+
+    public void addToCart(final int goodsOrder) {
+        driver.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(goodsOrder).click();
     }
 
     public String checkGoodsQuantity() {
-        return  driver.findElement(cartBadge).getText();
+        return driver.findElement(cartBadge).getText();
     }
 }
