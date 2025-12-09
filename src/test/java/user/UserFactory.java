@@ -23,7 +23,7 @@ public class UserFactory {
     }
 
     public static User withNullNullPermission() {
-        return new User(PropertyReader.getProperty("saucedemo.user"),
+        return new User(PropertyReader.getProperty(""),
                 PropertyReader.getProperty(""));
     }
 }
