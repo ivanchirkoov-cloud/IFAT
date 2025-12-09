@@ -2,9 +2,11 @@ package tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import user.User;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.*;
 
 /**
  * Страница тестирования функционала входа
@@ -14,26 +16,26 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "invalidData")
     public Object[][] loginData() {
         return new Object[][]{
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"},
-                {"", "","Epic sadface: Username is required"},
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."}
+                {withAdminPermission(), "Epic sadface: Sorry, this user has been locked out."},
+                {withNullUserPermission(), "Epic sadface: Username is required"},
+                {withNullPasswordPermission(), "Epic sadface: Password is required"},
+                {withNullNullPermission(), "Epic sadface: Username is required"},
         };
     }
 
     @Test(description = "Проверка некорректного логина", priority = 1, dataProvider = "invalidData")
-    public void checkIncorrectLogin(String user, String password, String errorMsg) {
+    public void checkIncorrectLogin(User user, String expectedMessage) {
         loginPage.open();
-        loginPage.login(user, password);
+        loginPage.login(withLockedUserPermission());
         assertTrue(loginPage.isErrorMsgAppear(), "Error message does not appear");
-        assertEquals(loginPage.errorMessageText(), errorMsg);
+        assertEquals(loginPage.errorMessageText(), "Epic sadface: Sorry, this user has been locked out.");
     }
 
     @Test(description = "Проверка корректного логина", priority = 2)
     public void checkCorrectLogin() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
+
         assertTrue(productsPage.isPageLoaded("Products"), "Register btn is not visible");
     }
 }
