@@ -2,14 +2,17 @@ package tests;
 
 import org.testng.annotations.Test;
 
+import static user.UserFactory.withAdminPermission;
+
 import static org.testng.Assert.*;
+
 
 public class CartTest extends BaseTest {
 
     @Test
     public void checkGoodsInCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         productsPage.isPageLoaded("Products");
         productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCart("Sauce Labs Onesie");

@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 /**
  * Страница описывает функционал входа
@@ -25,11 +26,14 @@ public class LoginPage extends BasePage {
         driver.get(BASE_URL + url);
     }
 
-    public void login(final String userName, final String passwordName) {
-        driver.findElement(userField).sendKeys(userName);
-        driver.findElement(passwordField).sendKeys(passwordName);
+    public void login(User user) {
+        enterLoginName(user.getEmail());
+        driver.findElement(passwordField).sendKeys(user.getPassword());
         driver.findElement(loginBtn).click();
+    }
 
+    public void enterLoginName(final String userName) {
+        driver.findElement(userField).sendKeys(userName);
     }
 
     public boolean isErrorMsgAppear() {
