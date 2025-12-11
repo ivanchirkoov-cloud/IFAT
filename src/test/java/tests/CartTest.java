@@ -21,14 +21,17 @@ public class CartTest extends BaseTest {
     @Owner("Chirkov Ivan ivan_chirkov@list.ru")
     @Test
     public void checkGoodsInCart() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.isPageLoaded(PRODUCTS.getDisplayName());
-        productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
-        productsPage.addToCart("Sauce Labs Onesie");
-        productsPage.addToCart("Sauce Labs Fleece Jacket");
-        loginPage.open("cart.html");
-        loginPage.isPageLoaded(CARTS.getDisplayName());
+        productsPage
+                .addToCart("Test.allTheThings() T-Shirt (Red)")
+                .addToCart("Sauce Labs Onesie")
+                .addToCart("Sauce Labs Fleece Jacket");
+        loginPage
+                .open("cart.html")
+                .isPageLoaded(CARTS.getDisplayName());
 
         assertEquals(cartPage.getProductsNames().size(), 3);
         assertFalse(cartPage.getProductsNames().isEmpty());

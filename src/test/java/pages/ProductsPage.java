@@ -19,9 +19,10 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Получаем сисок товаров")
-    public void addToCart(final String goodsName) {
+    public ProductsPage addToCart(final String goodsName) {
         By addGoodsToCart = By.xpath(ADD_TO_CARD_BUTTON_PATTERN.formatted(goodsName));
         driver.findElement(addGoodsToCart).click();
+        return this;
     }
 
     @Step("Добавляем в корзину товар из списка")
@@ -33,5 +34,4 @@ public class ProductsPage extends BasePage {
     public String checkGoodsQuantity() {
         return driver.findElement(cartBadge).getText();
     }
-
 }

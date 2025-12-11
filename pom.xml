@@ -16,6 +16,7 @@
         <testng.version>7.10.2</testng.version>
         <bonigarcia.version>6.3.3</bonigarcia.version>
         <allure-testng.version>2.29.1</allure-testng.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
         <selenid.version>7.12.0</selenid.version>
         <lombok.version>1.18.40</lombok.version>
         <aspectjweaver.version>1.9.25</aspectjweaver.version>
@@ -59,6 +60,7 @@
         </dependency>
 
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -76,7 +78,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <version>${allure-maven.version}</version>
             </plugin>
 
         </plugins>

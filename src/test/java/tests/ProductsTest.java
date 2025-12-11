@@ -20,13 +20,15 @@ public class ProductsTest extends BaseTest {
     @Owner("Chirkov Ivan ivan_chirkov@list.ru")
     @Test
     public void checkGoodsAdded() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.isPageLoaded(PRODUCTS.getDisplayName());
-        productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
-        productsPage.addToCart("Sauce Labs Onesie");
-        productsPage.addToCart("Sauce Labs Fleece Jacket");
-        productsPage.addToCart(1);
+        productsPage
+                .addToCart("Test.allTheThings() T-Shirt (Red)")
+                .addToCart("Sauce Labs Onesie")
+                .addToCart("Sauce Labs Fleece Jacket")
+                .addToCart(1);
 
         assertEquals(productsPage.checkGoodsQuantity(), "4");
     }
