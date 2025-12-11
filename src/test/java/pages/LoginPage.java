@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Открытие страницы")
-    public LoginPage  open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
         return this;
     }

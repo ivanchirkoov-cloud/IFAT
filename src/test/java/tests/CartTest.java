@@ -3,11 +3,10 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
-import static enums.TitleNaming.PRODUCTS;
 import static enums.TitleNaming.CARTS;
-import static user.UserFactory.withAdminPermission;
-
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.*;
+import static user.UserFactory.withAdminPermission;
 
 
 public class CartTest extends BaseTest {

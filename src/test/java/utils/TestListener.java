@@ -13,6 +13,16 @@ import java.util.concurrent.TimeUnit;
 
 public class TestListener implements ITestListener {
 
+    @Attachment(value = "screenshot", type = "image/png")
+    public static byte[] takeScreenshot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Attachment(value = "screenshoot", type = "image/png")
+    public static byte[] takeScreenShot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
     @Override
     public void onTestStart(ITestResult iTestResult) {
         System.out.printf("======================================== STARTING TEST %s ========================================%n", iTestResult.getName());
@@ -54,15 +64,5 @@ public class TestListener implements ITestListener {
 
     private long getExecutionTime(ITestResult iTestResult) {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
-    }
-
-    @Attachment(value = "screenshot", type = "image/png")
-    public static byte[] takeScreenshot(WebDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
-
-    @Attachment(value = "screenshoot", type = "image/png")
-    public static byte[] takeScreenShot(WebDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
