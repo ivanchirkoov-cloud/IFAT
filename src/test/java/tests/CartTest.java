@@ -1,7 +1,10 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+import static enums.TitleNaming.PRODUCTS;
+import static enums.TitleNaming.CARTS;
 import static user.UserFactory.withAdminPermission;
 
 import static org.testng.Assert.*;
@@ -9,15 +12,23 @@ import static org.testng.Assert.*;
 
 public class CartTest extends BaseTest {
 
+    @Epic("Работа с корзиной")
+    @Feature("Просмотр содержимого")
+    @Story("Проверка добавленных товаров в корзине")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("IFAT")
+    @Issue("IFAT")
+    @Owner("Chirkov Ivan ivan_chirkov@list.ru")
     @Test
     public void checkGoodsInCart() {
         loginPage.open();
         loginPage.login(withAdminPermission());
-        productsPage.isPageLoaded("Products");
+        productsPage.isPageLoaded(PRODUCTS.getDisplayName());
         productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCart("Sauce Labs Onesie");
         productsPage.addToCart("Sauce Labs Fleece Jacket");
         loginPage.open("cart.html");
+        loginPage.isPageLoaded(CARTS.getDisplayName());
 
         assertEquals(cartPage.getProductsNames().size(), 3);
         assertFalse(cartPage.getProductsNames().isEmpty());
