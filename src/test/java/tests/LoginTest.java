@@ -35,8 +35,9 @@ public class LoginTest extends BaseTest {
     @Owner("Chirkov Ivan ivan_chirkov@list.ru")
     @Test(description = "Проверка некорректного логина", priority = 1, dataProvider = "invalidData")
     public void checkIncorrectLogin(User user, String expectedMessage) {
-        loginPage.open();
-        loginPage.login(withLockedUserPermission());
+        loginPage
+                .open()
+                .login(withLockedUserPermission());
 
         assertTrue(loginPage.isErrorMsgAppear(), "Error message does not appear");
         assertEquals(loginPage.errorMessageText(), "Epic sadface: Sorry, this user has been locked out.");
@@ -47,8 +48,9 @@ public class LoginTest extends BaseTest {
     @Story("Попытка входа администратором")
     @Test(description = "Проверка корректного логина", priority = 2)
     public void checkCorrectLogin() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
 
         assertTrue(productsPage.isPageLoaded(PRODUCTS.getDisplayName()), "Register btn is not visible");
     }

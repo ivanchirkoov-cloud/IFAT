@@ -12,6 +12,7 @@ public class UserFactory {
         return new User(PropertyReader.getProperty("saucedemo.locked_user"),
                 PropertyReader.getProperty("saucedemo.password"));
     }
+
     public static User withNullUserPermission() {
         return new User(PropertyReader.getProperty(""),
                 PropertyReader.getProperty("saucedemo.password"));
